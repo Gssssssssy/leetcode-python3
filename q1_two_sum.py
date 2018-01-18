@@ -5,7 +5,12 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        for i, x in enumerate(nums):
-            for j, y in enumerate(nums):
-                if (i != j) and (x + y == target):
-                    return [i, j]
+        indexes = {}
+        for i, num in enumerate(nums):
+            indexes[num] = i
+                
+        for i, num_x in enumerate(nums):
+            num_y = target - num_x
+            if (num_y in indexes) and (indexes[num_y] != i):
+                    return [i, indexes[num_y]]
+            
